@@ -1,7 +1,7 @@
 import {Observable, Observer, of} from "rxjs";
 
-const myMap = <T>(mapFn: (v: T) => T) => (source$: Observable<T>) => {
-    return new Observable((observer: Observer<T>) => {
+const myMap = <R,T>(mapFn: (v: T) => R) => (source$: Observable<T>) => {
+    return new Observable<R>((observer: Observer<R>) => {
         return source$.subscribe({
             next: (value: T) => observer.next(mapFn(value)),
             error: (err: any) => observer.error(err),
